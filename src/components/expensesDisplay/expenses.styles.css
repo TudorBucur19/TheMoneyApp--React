@@ -1,11 +1,13 @@
-table {
+.expenses--display {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 45%;
+    float: left;
+    margin-left: 3%;
   }
 
-  th {
-    background: #eb4034;
+  .exp--header {
+    background: #FF5049;
     text-align: left;
     padding: 8px;
   }
@@ -17,5 +19,5 @@ table {
   }
   
   tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #e9e7e7;
   }

@@ -4,6 +4,7 @@ import ExpInputs from './components/expInputs';
 import Expenses from './components/expensesDisplay/expenses';
 import Incomes from './components/incomesDisplay/incomes';
 import IncInputs from './components/incInputs';
+import Header from './components/header/header';
 
 
 
@@ -69,8 +70,12 @@ function App() {
   
   return (
     <div className="App">
-      <button onClick={addIncome}>Add Income</button>
+      <Header
+      totalExp={expAmountList}
+      totalInc={incAmountList}
+      />
 
+      <div className="input--fields">
       {!isIncome && <ExpInputs
       handleExpChange={handleExpChange} 
       handleExpSubmit={handleExpSubmit} 
@@ -83,6 +88,11 @@ function App() {
       handleIncSubmit={handleIncSubmit}
       income={income}
       />}
+
+      <button onClick={addIncome}>Add Income</button>
+      </div>
+
+      <div className="tables">
       <Expenses 
       content={expList} 
       totalExp={expAmountList}
@@ -90,7 +100,8 @@ function App() {
       <Incomes 
       content={incList}
       totalInc={incAmountList}
-      />      
+      />
+      </div>      
     </div>
   );
 }

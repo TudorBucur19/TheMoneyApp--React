@@ -1,12 +1,13 @@
-.incomesDisplay {
+.incomes--display {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 45%;
     float: right;
+    margin-right: 3%;
   }
 
-  th {
-    background: #14d172;
+  .inc--header {
+    background: #05e383;
     text-align: left;
     padding: 8px;
   }

@@ -10,8 +10,8 @@ const Incomes = ({content, totalInc}) => {
     
     return(
         <div>
-            <table className="incomesDiplay">
-                <tr>
+            <table className="incomes--display">
+                <tr className="inc--header">
                     <th>Source</th>
                     <th>Amount</th>
                     <th>Date</th>

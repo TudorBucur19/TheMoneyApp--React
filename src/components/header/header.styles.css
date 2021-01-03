@@ -1,0 +1,51 @@
+/* .budget-head {
+    position: absolute;
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+} */
+
+.budget-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.incomes {
+    margin-bottom: 10px;
+    background-color:#05e383;
+    max-width: 25%;
+    margin: 0 auto;
+    padding: 8px;
+}
+
+.expenses {
+    background-color: #FF5049;
+    max-width: 25%;
+    margin: 15px auto;
+    padding: 8px;
+}
+
+
+/* .expenses-text {
+    font-size: 13px;
+    color: #444;
+    margin-top: 2px;
+} */
+
+/* .incValue,
+.expValue {
+    letter-spacing: 1px;
+    float: left;
+} */
+
+.percentage {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    border-radius: 3px;
+    float: right;
+    padding: 4px;  
+}

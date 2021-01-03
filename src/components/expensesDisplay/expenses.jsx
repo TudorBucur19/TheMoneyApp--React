@@ -11,8 +11,8 @@ const Expenses = ({content, totalExp}) => {
 
     return(
         <div>
-            <table>
-                <tr>
+            <table className="expenses--display">
+                <tr className="exp--header">
                     <th>Description</th>
                     <th>Amount</th>
                     <th>Category</th>
