@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ExpInputs = ({handleChange, expense, handleSubmit}) => {
+const ExpInputs = ({handleExpChange, expense, handleExpSubmit}) => {
     return(
         
         <div>                       
             <div>Add new expense:
-            <form action="" onSubmit={handleSubmit}>
+            <form action="" onSubmit={handleExpSubmit}>
                 
                 <input 
                 type="text" 
                 placeholder="Description..." 
                 name="description" 
                 value={expense.description} 
-                onChange={handleChange}
+                onChange={handleExpChange}
                 required
                 />
 
@@ -21,11 +21,11 @@ const ExpInputs = ({handleChange, expense, handleSubmit}) => {
                 placeholder="amount" 
                 name="amount" 
                 value={expense.amount} 
-                onChange={handleChange}
+                onChange={handleExpChange}
                 required
                 />
 
-                <select name="category" onChange={handleChange} value={expense.category} required>
+                <select name="category" onChange={handleExpChange} value={expense.category} required>
                     <option value="">--select category--</option>
                     <option value="groceries">Groceries</option>
                     <option value="household">Household</option>

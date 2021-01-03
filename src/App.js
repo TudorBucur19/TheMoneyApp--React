@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from 'react';
 import ExpInputs from './components/expInputs';
-import Expenses from './components/expenses';
+import Expenses from './components/expensesDisplay/expenses';
 import Incomes from './components/incomes';
 import IncInputs from './components/incInputs';
 
@@ -26,7 +26,7 @@ function App() {
   }
 
 
-  const handleChange = (event) => {
+  const handleExpChange = (event) => {
     const value = event.target.value;
     setExpense({
       ...expense, 
@@ -35,7 +35,7 @@ function App() {
   };
 
   
-  const handleSubmit = (event) => {
+  const handleExpSubmit = (event) => {
     event.preventDefault();  
     setExpList([...expList, expense]); 
     setExpense({
@@ -71,8 +71,8 @@ function App() {
       <button onClick={addIncome}>Add Income</button>
 
       {!isIncome && <ExpInputs
-      handleChange={handleChange} 
-      handleSubmit={handleSubmit} 
+      handleExpChange={handleExpChange} 
+      handleExpSubmit={handleExpSubmit} 
       expense={expense}
       />}
 
