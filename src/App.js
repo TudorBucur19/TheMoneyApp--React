@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import ExpInputs from './components/expInputs';
 import Expenses from './components/expensesDisplay/expenses';
-import Incomes from './components/incomes';
+import Incomes from './components/incomesDisplay/incomes';
 import IncInputs from './components/incInputs';
 
 
@@ -15,6 +15,7 @@ function App() {
   const [expList, setExpList] = useState([]);
   const [incList, setIncList] = useState([]);
   const [expAmountList, setExpAmountList] = useState([]);
+  const [incAmountList, setIncAmountList] = useState([]);
 
 
   const addIncome = () => {
@@ -61,7 +62,7 @@ function App() {
       source: "",
       amount: ""
     }); 
-    //setIsIncome(false);
+    setIncAmountList([...incAmountList, Number(income.amount)]);
   };
 
 
@@ -82,8 +83,14 @@ function App() {
       handleIncSubmit={handleIncSubmit}
       income={income}
       />}
-      <Expenses content={expList} totalExp={expAmountList}/>
-      <Incomes content={incList}/>      
+      <Expenses 
+      content={expList} 
+      totalExp={expAmountList}
+      />
+      <Incomes 
+      content={incList}
+      totalInc={incAmountList}
+      />      
     </div>
   );
 }

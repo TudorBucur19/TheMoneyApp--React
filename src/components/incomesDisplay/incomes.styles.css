@@ -1,0 +1,22 @@
+.incomesDisplay {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 45%;
+    float: right;
+  }
+
+  th {
+    background: #14d172;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
