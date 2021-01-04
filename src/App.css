@@ -7,3 +7,8 @@
 .tables {
     margin-top: 3%;
 }
+
+.inc-button {
+    float: right;
+    display: inline;
+}

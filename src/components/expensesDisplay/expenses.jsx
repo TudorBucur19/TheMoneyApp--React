@@ -6,9 +6,7 @@ const Expenses = ({content, totalExp}) => {
     let today = new Date(),
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     
-    let totalExpenses = totalExp.reduce((total, el) => total = total + el, 0);
-        
-
+    
     return(
         <div>
             <table className="expenses--display">
@@ -30,7 +28,7 @@ const Expenses = ({content, totalExp}) => {
 
                 <tr>
                     <td>Total</td>
-                    <td>{totalExpenses}</td>
+                    <td>{totalExp}</td>
                     <td></td>
                     <td></td>
                 </tr>

@@ -6,7 +6,7 @@ const Incomes = ({content, totalInc}) => {
     let today = new Date(),
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-    let totalIncomes = totalInc.reduce((total, el) => total = total + el, 0);
+    
     
     return(
         <div>
@@ -26,7 +26,7 @@ const Incomes = ({content, totalInc}) => {
                 )}
                 <tr>
                     <td>Total</td>
-                    <td>{totalIncomes}</td>
+                    <td>{totalInc}</td>
                     <td></td>
                 </tr>
             </table>            

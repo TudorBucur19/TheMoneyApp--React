@@ -66,41 +66,43 @@ function App() {
     setIncAmountList([...incAmountList, Number(income.amount)]);
   };
 
+  let currentTotalExp = expAmountList.reduce((total, el) => total = total + el, 0);
+  let currentTotalInc = incAmountList.reduce((total, el) => total = total + el, 0);
 
   
   return (
     <div className="App">
       <Header
-      totalExp={expAmountList}
-      totalInc={incAmountList}
+      totalExp={currentTotalExp}
+      totalInc={currentTotalInc}
       />
 
       <div className="input--fields">
-      {!isIncome && <ExpInputs
-      handleExpChange={handleExpChange} 
-      handleExpSubmit={handleExpSubmit} 
-      expense={expense}
-      />}
+        {!isIncome && <ExpInputs
+        handleExpChange={handleExpChange} 
+        handleExpSubmit={handleExpSubmit} 
+        expense={expense}
+        />}
 
-      {isIncome && <IncInputs 
-      closeInc={closeInc}     
-      handleIncChange={handleIncChange}
-      handleIncSubmit={handleIncSubmit}
-      income={income}
-      />}
+        {isIncome && <IncInputs 
+        closeInc={closeInc}     
+        handleIncChange={handleIncChange}
+        handleIncSubmit={handleIncSubmit}
+        income={income}
+        />}
 
-      <button onClick={addIncome}>Add Income</button>
+        <button className="inc--button" onClick={addIncome}>Add Income</button>
       </div>
 
       <div className="tables">
-      <Expenses 
-      content={expList} 
-      totalExp={expAmountList}
-      />
-      <Incomes 
-      content={incList}
-      totalInc={incAmountList}
-      />
+        <Expenses 
+        content={expList} 
+        totalExp={currentTotalExp}
+        />
+        <Incomes 
+        content={incList}
+        totalInc={currentTotalInc}
+        />
       </div>      
     </div>
   );

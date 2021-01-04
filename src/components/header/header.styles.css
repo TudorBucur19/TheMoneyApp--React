@@ -45,7 +45,16 @@
 .percentage {
     background-color: rgba(255, 255, 255, 0.2);
     text-align: center;
-    border-radius: 3px;
-    float: right;
+    border-radius: 3px;    
     padding: 4px;  
+    max-width: 20%;
+    margin-left: 10%;
 }
+
+.inc--value {
+    float: right;
+}
+.exp--value {
+    float: right;
+}
+
