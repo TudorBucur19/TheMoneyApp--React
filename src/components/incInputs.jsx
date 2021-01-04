@@ -10,15 +10,24 @@ const IncInputs = ({closeInc, handleIncChange, handleIncSubmit, income}) => {
                 name="source" 
                 value={income.source} 
                 onChange={handleIncChange}
-                required/>
+                required
+                maxLength="20"
+                />
 
                 <input 
                 type="number" 
-                placeholder="amount" 
+                placeholder="Amount" 
                 name="amount" 
                 value={income.amount} 
                 onChange={handleIncChange}
                 required
+                />
+
+                <input 
+                type="date" 
+                name="date" 
+                onChange={handleIncChange} 
+                value={income.date}
                 />
 
                 <button type="submit">ADD</button>

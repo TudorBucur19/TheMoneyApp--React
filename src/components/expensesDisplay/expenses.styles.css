@@ -19,5 +19,9 @@
   }
   
   tr:nth-child(even) {
-    background-color: #e9e7e7;
+    background-color: #f3f3f3;
+  }
+
+  .exp--foot {
+    background: #FF5049;
   }

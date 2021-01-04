@@ -43,7 +43,8 @@ function App() {
     setExpense({
       description: "",
       amount: "",
-      category: ""
+      category: "",
+      date: ""
     }); 
     setExpAmountList([...expAmountList, Number(expense.amount)]);
   };
@@ -61,7 +62,8 @@ function App() {
     setIncList([...incList, income]); 
     setIncome({
       source: "",
-      amount: ""
+      amount: "",
+      date: ""
     }); 
     setIncAmountList([...incAmountList, Number(income.amount)]);
   };

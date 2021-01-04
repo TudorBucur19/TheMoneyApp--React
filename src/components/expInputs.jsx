@@ -14,11 +14,12 @@ const ExpInputs = ({handleExpChange, expense, handleExpSubmit}) => {
                 value={expense.description} 
                 onChange={handleExpChange}
                 required
+                maxLength="20"
                 />
 
                 <input 
                 type="number" 
-                placeholder="amount" 
+                placeholder="Amount" 
                 name="amount" 
                 value={expense.amount} 
                 onChange={handleExpChange}
@@ -31,7 +32,9 @@ const ExpInputs = ({handleExpChange, expense, handleExpSubmit}) => {
                     <option value="household">Household</option>
                     <option value="rent">Rent</option>
                     <option value="utilities">Utilities</option>
-                </select>                
+                </select>
+
+                <input type="date" name="date" onChange={handleExpChange} value={expense.date}/>                
                 <button type="submit">ADD</button>
             </form>
             </div>                      
