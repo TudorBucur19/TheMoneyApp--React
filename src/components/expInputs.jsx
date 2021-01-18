@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ExpContextProvider from '../contexts/ExpensesContext';
+import { ExpContext } from '../contexts/ExpensesContext';
 
-const ExpInputs = ({handleExpChange, expense, handleExpSubmit}) => {
+const ExpInputs = () => {
+    const { expense, onSubmit, handleExpChange } = useContext(ExpContext)
     return(
         
-        <div>                       
+        <div>
+            <ExpContextProvider>                       
             <div>Add new expense:
-            <form action="" onSubmit={handleExpSubmit}>
+            <form onSubmit={onSubmit}>
                 
                 <input 
                 type="text" 
@@ -38,7 +42,7 @@ const ExpInputs = ({handleExpChange, expense, handleExpSubmit}) => {
                 <button type="submit">ADD</button>
             </form>
             </div>                      
-                              
+            </ExpContextProvider>                     
         </div>
     )
 };
