@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { IncContext } from '../../contexts/IncomesContext';
 import './incomes.styles.css';
 
-const Incomes = ({content, totalInc}) => {
+const Incomes = () => {
+
+    const { incomes, totalInc } = useContext(IncContext);
     
     let today = new Date(),
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -20,11 +23,11 @@ const Incomes = ({content, totalInc}) => {
                 </thead>
 
                 <tbody>
-                {content.map(el =>
+                {incomes.map(el =>
                 <tr> 
-                    <td>{el.source}</td>
-                    <td>{el.amount}</td>
-                    <td>{el.date ? el.date : date}</td>
+                    <td>{el.income.source}</td>
+                    <td>{el.income.amount}</td>
+                    <td>{el.income.date ? el.income.date : date}</td>
                 </tr>
                 )}
                 </tbody>
@@ -32,7 +35,7 @@ const Incomes = ({content, totalInc}) => {
                 <tfoot className="inc--foot">
                 <tr>
                     <td>Total</td>
-                    <td>{totalInc}</td>
+                    <td>{totalInc()}</td>
                     <td></td>
                 </tr>
                 </tfoot>

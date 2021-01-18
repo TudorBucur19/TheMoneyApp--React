@@ -9,7 +9,11 @@ const ExpContextProvider = (props) => {
     const [expense, setExpense] = useState({});
     const expenses = useExpenses();
     const amountList = expenses.map(el => Number(el.expense.amount));
-    const totalAmounts = () => amountList.reduce((total, el) => total = total + el, 0);
+    const totalExp = () => amountList.reduce((total, el) => total = total + el, 0);
+
+    let monthNumber = new Date().getMonth();
+    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let currentMonth = monthNames[monthNumber];
 
     
     const handleExpChange = (event) => {
@@ -26,7 +30,7 @@ const ExpContextProvider = (props) => {
     
         firebase
         .firestore()
-        .collection('ExpenseList')
+        .collection(`Exp ${currentMonth}`)
         .add({
             expense
         })
@@ -46,7 +50,7 @@ const ExpContextProvider = (props) => {
         useEffect(() => {
             const unsubscribe = firebase
             .firestore()
-            .collection('ExpenseList')
+            .collection(`Exp ${currentMonth}`)
             .onSnapshot((snapshot) => {
                 const newExp = snapshot.docs.map((doc) => ({
                     id: doc.id,
@@ -64,7 +68,7 @@ const ExpContextProvider = (props) => {
         
 
     return ( 
-        <ExpContext.Provider value={{ expense, onSubmit, handleExpChange, totalAmounts, expenses }}>
+        <ExpContext.Provider value={{ expense, onSubmit, handleExpChange, totalExp, expenses }}>
             {props.children}
         </ExpContext.Provider>
      );

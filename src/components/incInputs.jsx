@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { IncContext } from '../contexts/IncomesContext';
 
-const IncInputs = ({closeInc, handleIncChange, handleIncSubmit, income}) => {
+const IncInputs = ({closeInc}) => {
+
+    const { income, onSubmit, handleIncChange } = useContext(IncContext);
+
     return(        
         <div>Add new income:
-            <form action="" onSubmit={handleIncSubmit}>
+            <form action="" onSubmit={onSubmit}>
                 <input 
                 type="text" 
                 placeholder="Income source..." 

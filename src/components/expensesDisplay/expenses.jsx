@@ -1,34 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './expenses.styles.css';
-import firebase from '../../utils/firebase';
 import { ExpContext } from '../../contexts/ExpensesContext';
 
-// function useExpenses() {
-//     const [expenses, setExpenses] = useState([]);
 
-//     useEffect(() => {
-//         const unsubscribe = firebase
-//         .firestore()
-//         .collection('ExpenseList')
-//         .onSnapshot((snapshot) => {
-//             const newExp = snapshot.docs.map((doc) => ({
-//                 id: doc.id,
-//                 ...doc.data()
-//             }))
-//             setExpenses(newExp);
-//         })
-//         return () => unsubscribe();
-//     }, [])
-
-//     return expenses;
-// }
-
-const Expenses = ({content, totalExp}) => {
-    //const expenses = useExpenses();
-    const { totalAmounts, expenses } = useContext(ExpContext);
-    // const amountList = expenses.map(el => Number(el.expense.amount));
-    // const totalAmounts = () => amountList.reduce((total, el) => total = total + el, 0);
-        
+const Expenses = () => {
+    const { totalExp, expenses } = useContext(ExpContext);
+           
     let today = new Date(),
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     
@@ -62,7 +39,7 @@ const Expenses = ({content, totalExp}) => {
                 <tr>
                     <td></td>
                     <td>Total</td>
-                    <td>{totalAmounts()}</td>
+                    <td>{totalExp()}</td>
                     <td></td>
                     <td></td>                    
                 </tr>
