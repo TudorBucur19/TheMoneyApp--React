@@ -1,21 +1,26 @@
 import React, { useContext } from 'react';
-import ExpContextProvider from '../contexts/ExpensesContext';
-import { ExpContext } from '../contexts/ExpensesContext';
+import OperationsContextProvider from '../contexts/OperationsContext';
+import { OperationsContext } from '../contexts/OperationsContext';
 
-const ExpInputs = () => {
-    const { expense, onSubmit, handleExpChange } = useContext(ExpContext)
+const OperationsForm = () => {
+    const { operation, onSubmit, handleExpChange } = useContext(OperationsContext)
     return(
         
         <div>
-            <ExpContextProvider>                       
-            <div>Add new expense:
+            <OperationsContextProvider>                       
+            <div>Add new operation:
             <form onSubmit={onSubmit}>
                 
+                <select name="typeOf" onChange={handleExpChange} value={operation.typeOf} required>
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+
                 <input 
                 type="text" 
                 placeholder="Description..." 
                 name="description" 
-                value={expense.description} 
+                value={operation.description} 
                 onChange={handleExpChange}
                 required
                 maxLength="20"
@@ -25,12 +30,12 @@ const ExpInputs = () => {
                 type="number" 
                 placeholder="Amount" 
                 name="amount" 
-                value={expense.amount} 
+                value={operation.amount} 
                 onChange={handleExpChange}
                 required
                 />
 
-                <select name="category" onChange={handleExpChange} value={expense.category} required>
+                <select name="category" onChange={handleExpChange} value={operation.category} required>
                     <option value="">--select category--</option>
                     <option value="groceries">Groceries</option>
                     <option value="household">Household</option>
@@ -38,13 +43,13 @@ const ExpInputs = () => {
                     <option value="utilities">Utilities</option>
                 </select>
 
-                <input type="date" name="date" onChange={handleExpChange} value={expense.date}/>                
+                <input type="date" name="date" onChange={handleExpChange} value={operation.date}/>                
                 <button type="submit">ADD</button>
             </form>
             </div>                      
-            </ExpContextProvider>                     
+            </OperationsContextProvider>                     
         </div>
     )
 };
 
-export default ExpInputs;
+export default OperationsForm;

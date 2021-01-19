@@ -25,3 +25,21 @@
   .exp--foot {
     background: #FF5049;
   }
+
+  .incomes--display {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 45%;
+    float: left;
+    margin-left: 3%;
+  }
+
+  .inc--header {
+    background: #05e383;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .inc--foot {
+    background: #05e383;
+  }

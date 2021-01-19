@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 import './header.styles.css';
-import { ExpContext } from '../../contexts/ExpensesContext';
-import { IncContext } from '../../contexts/IncomesContext';
+import { OperationsContext } from '../../contexts/OperationsContext';
 
 const Header = () => {
-    const { totalExp } = useContext(ExpContext);
-    const { totalInc } = useContext(IncContext);
+    const { totalExp } = useContext(OperationsContext);
+    const { totalInc } = useContext(OperationsContext);
 
     let monthNumber = new Date().getMonth();
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

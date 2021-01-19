@@ -1,48 +1,25 @@
 import './App.css';
-import React, { useState } from 'react';
-import ExpInputs from './components/expInputs';
-import Expenses from './components/expensesDisplay/expenses';
-import Incomes from './components/incomesDisplay/incomes';
-import IncInputs from './components/incInputs';
+import React from 'react';
+import OperationsForm from './components/operationsInputs';
+import Operations from './components/operationsDisplay/operations';
 import Header from './components/header/header';
-import ExpContextProvider from './contexts/ExpensesContext';
-import IncContextProvider from './contexts/IncomesContext';
+import OperationsContextProvider from './contexts/OperationsContext';
 
 
 function App() {
 
-  const [isIncome, setIsIncome] = useState(false);
-  
-  const addIncome = () => {
-    setIsIncome(true);
-  };
-
-  const closeInc = () => {
-    setIsIncome(false);
-  };
-  
   return (
     <div className="App">
-      <ExpContextProvider>
-        <IncContextProvider>
+      <OperationsContextProvider>        
           <Header/>
           <div className="input--fields">
-            {!isIncome && <ExpInputs
-            />}
-
-            {isIncome && <IncInputs 
-            closeInc={closeInc}            
-            />}
-
-            <button className="inc--button" onClick={addIncome}>Add Income</button>
+            <OperationsForm/>          
           </div>
 
           <div className="tables">
-            <Expenses/>
-            <Incomes/>            
+            <Operations/>
           </div>
-        </IncContextProvider>
-      </ExpContextProvider>    
+      </OperationsContextProvider>    
     </div>
   );
 }
