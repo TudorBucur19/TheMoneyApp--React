@@ -9,8 +9,9 @@ const OperationsContextProvider = (props) => {
     
     const [operation, setOperation] = useState({});
     const operations = useEntries();
-    const expenses = operations.filter(el => el.operation.typeOf === "false");
-    const incomes = operations.filter(el => el.operation.typeOf === "true");
+
+    const expenses = operations.filter(el => el.operation.typeOf === "expense");
+    const incomes = operations.filter(el => el.operation.typeOf === "income");
     const expAmountList = expenses.map(el => Number(el.operation.amount));
     const incAmountList = incomes.map(el => Number(el.operation.amount));    
     
@@ -23,8 +24,7 @@ const OperationsContextProvider = (props) => {
     let monthNumber = new Date().getMonth();
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let currentMonth = monthNames[monthNumber];
-    const [archiveMonth, setArchiveMonth] = useState(currentMonth);
-
+    
     
     const handleChange = (event) => {
         const value = event.target.value;
@@ -34,10 +34,7 @@ const OperationsContextProvider = (props) => {
         });
       };
 
-      const handleSearcInput = (e) => {
-          setArchiveMonth(e.target.value);
-      }
-
+      
     const db = firebase.firestore();
 
     function onSubmit(event)  {
@@ -89,7 +86,7 @@ const OperationsContextProvider = (props) => {
     };
 
     const values = { operation, onSubmit, handleChange, expenses, totalExp, incomes, totalInc, 
-        handleSearcInput, currentMonth, removeItem }
+         currentMonth, removeItem }
     
     return ( 
         <OperationsContext.Provider value={ values }>

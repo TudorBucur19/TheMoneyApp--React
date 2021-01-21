@@ -10,17 +10,24 @@ const OperationsForm = () => {
     const handleCategUpdate = () => {
         const newCateg = prompt("Add new category!");
         try{
-            if(operation.typeOf === "false"){
-                newCateg.length > 0 && setExpCategories([...expCategories, newCateg]);
-                
-                
+                operation.typeOf === "expense" ?
+                newCateg.length > 0 && setExpCategories([...expCategories, newCateg]) :
+                operation.typeOf === "income" ?  
+                newCateg.length > 0 && setIncCategories([...incCategories, newCateg]) :
+                alert("Select an option") 
+            }               
+             catch(err) {
+                alert(err.message);
             }
-                newCateg.length > 0 && setIncCategories([...incCategories, newCateg]);
-                
-                
-            } catch(err) {
-                alert("Please insert a category name!")
-            }
+    };
+
+    const getBtnStyle = () => {
+        let classes;
+        classes = operation.typeOf === "expense" ? "buttons-exp" :
+                  operation.typeOf === "income" ? "buttons-inc" :
+                  "";
+        console.log(classes)
+        return classes;        
     }
 
     
@@ -33,8 +40,8 @@ const OperationsForm = () => {
                 
                 <select name="typeOf" onChange={handleChange} value={operation.typeOf} required>
                     <option value="">--Exp/Inc--</option>
-                    <option value={false}>-</option>
-                    <option value={true}>+</option>
+                    <option value={"expense"}>-</option>
+                    <option value={"income"}>+</option>
                 </select>
 
                 <input 
@@ -56,41 +63,31 @@ const OperationsForm = () => {
                 required
                 />
                 
-                {operation.typeOf === "false" &&                
+                {operation.typeOf === "expense" &&                
                     <select name="category" onChange={handleChange} value={operation.category} required>
                         {expCategories.map(category => 
                             <option value={category}>{category}</option>
                             )}
-                        {/* <option value="">--select category--</option>
-                        <option value="groceries">Groceries</option>
-                        <option value="household">Household</option>
-                        <option value="rent">Rent</option>
-                        <option value="utilities">Utilities</option> */}
                     </select>
                 }
                     
-                {operation.typeOf === "true" &&
+                {operation.typeOf === "income" &&
                     <select name="category" onChange={handleChange} value={operation.category} required>
                         {incCategories.map(category => 
                             <option value={category}>{category}</option>
                             )}
-                        {/* <option value="">--select category--</option>
-                        <option value="salary">Salary</option>
-                        <option value="stocks">Stocks</option>
-                        <option value="bonus">Bonus</option>
-                        <option value="other">Other...</option> */}
                     </select>
                 }
 
                 
 
                 <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
-                <button type="submit">ADD</button>
+                <button className={getBtnStyle()} type="submit">ADD</button>
 
-                <button onClick={handleCategUpdate} 
-                style={{background: operation.typeOf === "false" ? "#FF5049" : "#05e383" }}>
-                    Add Category
+                <button className={getBtnStyle()} onClick={handleCategUpdate}>
+                    Add New Category
                 </button>
+                
             </form>
             </div>                      
             </OperationsContextProvider>                     

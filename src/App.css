@@ -8,19 +8,16 @@
   margin-top: 3%;
 }
 
-.inc-button {
-  float: right;
-  display: inline;
-}
-
 .ops-form {
   padding: 5px;
 }
 .ops-form button {
   margin: 2px;
-  border-radius: 6px;
+  padding: 3px;
 }
 .ops-form input {
   margin: 4px;
   padding: 3px;
 }/*# sourceMappingURL=App.css.map */
+
+

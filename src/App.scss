@@ -19,7 +19,7 @@
 
     button {
         margin: 2px;
-        border-radius: 6px;
+        padding: 3px;
     }
 
     input {
@@ -28,3 +28,10 @@
     }
 }
  
+.buttons-exp {
+    background: #FF5049;
+  }
+  
+  .buttons-inc {
+    background: #05e383;
+  }
