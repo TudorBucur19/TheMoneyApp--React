@@ -3,13 +3,8 @@ import './header.styles.css';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
 const Header = () => {
-    const { totalExp } = useContext(OperationsContext);
-    const { totalInc } = useContext(OperationsContext);
-
-    let monthNumber = new Date().getMonth();
-    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let currentMonth = monthNames[monthNumber];
-
+    const { totalExp, totalInc, handleSearchInput, currentMonth } = useContext(OperationsContext);
+    
     let percentage = ((totalExp()/totalInc())*100).toFixed(2);
     let balance = totalInc() - totalExp();
 
@@ -29,6 +24,11 @@ const Header = () => {
                 <span className="percentage">{totalInc() === 0  ? 0 : percentage} %</span> 
                 <span className="exp--value">{totalExp()}  Lei</span>  
             </div>
+        </div>
+
+        <div className="search--month">
+            <input type="text" placeholder="Check another month..." onChange={handleSearchInput} />
+            <button type="submit">Check</button>  
         </div>
     </div>
     );

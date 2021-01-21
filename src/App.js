@@ -1,5 +1,5 @@
-import './App.css';
-import React from 'react';
+import './App.scss';
+import React, {useState} from 'react';
 import OperationsForm from './components/operationsInputs';
 import Operations from './components/operationsDisplay/operations';
 import Header from './components/header/header';

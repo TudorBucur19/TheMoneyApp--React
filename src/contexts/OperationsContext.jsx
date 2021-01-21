@@ -6,23 +6,27 @@ export const OperationsContext = createContext();
 
 
 const OperationsContextProvider = (props) => {
+    
     const [operation, setOperation] = useState({});
     const operations = useEntries();
-    const expenses = operations.filter(el => el.operation.typeOf === "-");
-    const incomes = operations.filter(el => el.operation.typeOf === "+");
+    const expenses = operations.filter(el => el.operation.typeOf === "false");
+    const incomes = operations.filter(el => el.operation.typeOf === "true");
     const expAmountList = expenses.map(el => Number(el.operation.amount));
-    const incAmountList = incomes.map(el => Number(el.operation.amount));
+    const incAmountList = incomes.map(el => Number(el.operation.amount));    
+    
     
     const totalExp = () => expAmountList.reduce((total, el) => total = total + el, 0);
     const totalInc = () => incAmountList.reduce((total, el) => total = total + el, 0);
+    
     
 
     let monthNumber = new Date().getMonth();
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let currentMonth = monthNames[monthNumber];
+    const [archiveMonth, setArchiveMonth] = useState(currentMonth);
 
     
-    const handleExpChange = (event) => {
+    const handleChange = (event) => {
         const value = event.target.value;
         setOperation({
           ...operation, 
@@ -30,13 +34,16 @@ const OperationsContextProvider = (props) => {
         });
       };
 
+      const handleSearcInput = (e) => {
+          setArchiveMonth(e.target.value);
+      }
+
+    const db = firebase.firestore();
 
     function onSubmit(event)  {
         event.preventDefault()
     
-        firebase
-        .firestore()
-        .collection(`${currentMonth}`)
+        db.collection(`${currentMonth}`)
         .add({
             operation
         })
@@ -46,17 +53,16 @@ const OperationsContextProvider = (props) => {
             amount: "",
             category: "",
             date: "",
-            typeOf: "-"
+            typeOf: ""
           }); 
         })
     }
 
     function useEntries() {
         const [entries, setEntries] = useState([]);
-    
+        
         useEffect(() => {
-            const unsubscribe = firebase
-            .firestore()
+            const unsubscribe = db
             .collection(`${currentMonth}`)
             .onSnapshot((snapshot) => {
                 const newEntry = snapshot.docs.map((doc) => ({
@@ -64,18 +70,29 @@ const OperationsContextProvider = (props) => {
                     ...doc.data()
                 }))
                 setEntries(newEntry);
+                console.log(newEntry);
             })
             return () => unsubscribe();
         }, [])
     
         return entries;
-    }
-   
+    };
 
-        
+    const removeItem = (id) => {
+        firebase
+        .firestore()
+        .collection(`${currentMonth}`)
+        .doc(id)
+        .delete()
+        .then(() => console.log("Document deleted"))
+        .catch((error) => console.error("Error deleting document", error));   
+    };
 
+    const values = { operation, onSubmit, handleChange, expenses, totalExp, incomes, totalInc, 
+        handleSearcInput, currentMonth, removeItem }
+    
     return ( 
-        <OperationsContext.Provider value={{ operation, onSubmit, handleExpChange, totalExp, totalInc, expenses, incomes }}>
+        <OperationsContext.Provider value={ values }>
             {props.children}
         </OperationsContext.Provider>
      );
