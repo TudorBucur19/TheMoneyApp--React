@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './header.styles.css';
+import './Header.styles.scss';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
 const Header = () => {
@@ -16,17 +16,18 @@ const Header = () => {
         </div>
 
         <div className="incomes">
-            <div className="incomes-text">Incomes <span className="inc--value">{totalInc()}  Lei</span></div>
+            <span className="incomes-text">Incomes </span> 
+            <span className="inc-value">{totalInc()}  Lei</span>
         </div>
 
         <div className="expenses">
-            <div className="expenses-text">Expenses 
-                <span className="percentage">{totalInc() === 0  ? 0 : percentage} %</span> 
-                <span className="exp--value">{totalExp()}  Lei</span>  
-            </div>
+            <span className="expenses-text"> Expenses </span>
+            <span className="percentage">{totalInc() === 0  ? 0 : percentage} %</span> 
+            <span className="exp-value">{totalExp()}  Lei</span>  
+            
         </div>
 
-        <div className="search--month">
+        <div className="search-month">
             <input type="text" placeholder="Check another month..." onChange={handleSearchInput} />
             <button type="submit">Check</button>  
         </div>

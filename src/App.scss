@@ -1,37 +1,11 @@
-.input--fields, .search--month {
-    max-width: 90%;
-    margin-left: 3%;
-    margin-top: 3%;
-}
-
-.tables {
-    margin-top: 3%;
-}
-
-.inc-button {
-    float: right;
-    display: inline;
+.app {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 20% 50% 30%;
 }
 
 
-.ops-form {
-    padding: 5px;
 
-    button {
-        margin: 2px;
-        padding: 3px;
-    }
 
-    input {
-        margin: 4px;
-        padding: 3px;
-    }
-}
- 
-.buttons-exp {
-    background: #FF5049;
-  }
-  
-  .buttons-inc {
-    background: #05e383;
-  }
+
+

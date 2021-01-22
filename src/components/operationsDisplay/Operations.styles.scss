@@ -1,4 +1,8 @@
-.expenses--display {
+
+.tables-container {
+  margin-top: 3%;
+}
+  .expenses-display {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 45%;
@@ -6,7 +10,9 @@
     margin-left: 3%;
   }
 
-  .exp--header {
+
+
+  .exp-header {
     background: #FF5049;
     text-align: left;
     padding: 8px;
@@ -22,11 +28,11 @@
     background-color: #f3f3f3;
   }
 
-  .exp--foot {
+  .exp-foot {
     background: #FF5049;
   }
 
-  .incomes--display {
+  .incomes-display {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 45%;
@@ -34,13 +40,13 @@
     margin-left: 3%;
   }
 
-  .inc--header {
+  .inc-header {
     background: #05e383;
     text-align: left;
     padding: 8px;
   }
 
-  .inc--foot {
+  .inc-foot {
     background: #05e383;
   }
 

@@ -1,0 +1,70 @@
+.search-month {
+    padding-left: 3%;
+    
+    input {
+        font-size: 1em;
+        padding: 4px;
+        border: 1px solid gray;
+        border-radius: 4px;
+    }
+}
+
+.budget-title {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.incomes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background-color:#05e383;
+    max-width: 25%;
+    margin: 0 auto;
+    padding: 8px;
+}
+
+.expenses {
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+    background-color: #FF5049;
+    max-width: 25%;
+    margin: 15px auto;
+    padding: 8px;
+
+    .percentage {
+        background-color: rgba(255, 255, 255, 0.2);
+        align-self: center;
+        text-align: center;
+        border-radius: 3px;    
+        padding: 4px;  
+        max-width: 20%;
+        margin-left: 10%;
+    }
+}
+
+
+/* .expenses-text {
+    font-size: 13px;
+    color: #444;
+    margin-top: 2px;
+} */
+
+/* .incValue,
+.expValue {
+    letter-spacing: 1px;
+    float: left;
+} */
+
+
+
+.inc--value {
+    float: right;
+}
+// .exp--value {
+//     float: right;
+// }
+

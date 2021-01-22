@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './operations.styles.css';
+import './Operations.styles.scss';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
 
@@ -12,11 +12,11 @@ const Operations = () => {
 
 
     return (
-        <div>
+        <div className="tables-container">
             <div>
-                <table className="expenses--display">
+                <table className="expenses-display">
                     <thead>
-                        <tr className="exp--header">
+                        <tr className="exp-header">
                             <th>Crt.</th>
                             <th>Description</th>
                             <th>Amount</th>
@@ -39,7 +39,7 @@ const Operations = () => {
                         )}
                     </tbody>
 
-                    <tfoot className="exp--foot">
+                    <tfoot className="exp-foot">
                         <tr>
                             <td></td>
                             <td>Total</td>
@@ -55,9 +55,9 @@ const Operations = () => {
 
 
             <div>
-                <table className="incomes--display">
+                <table className="incomes-display">
                     <thead>
-                        <tr className="inc--header">
+                        <tr className="inc-header">
                             <th>Crt.</th>
                             <th>Description</th>
                             <th>Amount</th>
@@ -80,7 +80,7 @@ const Operations = () => {
                         )}
                     </tbody>
 
-                    <tfoot className="inc--foot">
+                    <tfoot className="inc-foot">
                         <tr>
                             <td></td>
                             <td>Total</td>

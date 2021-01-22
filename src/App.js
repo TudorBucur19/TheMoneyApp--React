@@ -1,8 +1,8 @@
 import './App.scss';
-import React, {useState} from 'react';
-import OperationsForm from './components/operationsInputs';
-import Operations from './components/operationsDisplay/operations';
-import Header from './components/header/header';
+import React from 'react';
+import OperationsForm from './components/operationsInputs/OperationsInputs';
+import Operations from './components/operationsDisplay/Operations';
+import Header from './components/header/Header';
 import OperationsContextProvider from './contexts/OperationsContext';
 
 
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <OperationsContextProvider>        
           <Header/>
-          <div className="input--fields">
+          <div className="input-fields">
             <OperationsForm/>          
           </div>
 

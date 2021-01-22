@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import OperationsContextProvider from '../contexts/OperationsContext';
-import { OperationsContext } from '../contexts/OperationsContext';
+import './Operations.Inputs.styles.scss';
+import OperationsContextProvider from '../../contexts/OperationsContext';
+import { OperationsContext } from '../../contexts/OperationsContext';
 
 const OperationsForm = () => {
     const { operation, onSubmit, handleChange } = useContext(OperationsContext)
@@ -83,7 +84,6 @@ const OperationsForm = () => {
 
                 <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
                 <button className={getBtnStyle()} type="submit">ADD</button>
-
                 <button className={getBtnStyle()} onClick={handleCategUpdate}>
                     Add New Category
                 </button>
