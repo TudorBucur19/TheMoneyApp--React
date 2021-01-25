@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import './Operations.styles.scss';
+import './Operations.scss';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
+export const total = (list) => list.reduce((total, el) => total = total + Number(el.operation.amount), 0);
 
 const Operations = () => {
-    const { totalInc, totalExp, expenses, incomes, removeItem } = useContext(OperationsContext);
+    const { expenses, incomes, removeItem, updateItem } = useContext(OperationsContext);
 
 
     let today = new Date(),
@@ -22,18 +23,22 @@ const Operations = () => {
                             <th>Amount</th>
                             <th>Category</th>
                             <th>Date</th>
+                            <th>Updates</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {expenses.map((el, index) =>
-
                             <tr key={el.id}>
-                                <td>{index + 1}</td>
+                                <td >{index + 1}</td>
                                 <td>{el.operation.description} </td>
                                 <td>{el.operation.amount}</td>
                                 <td>{el.operation.category}</td>
                                 <td>{el.operation.date ? el.operation.date : date}</td>
+                                <td className="updates">
+                                    <button onClick={() => removeItem(el.id)}>Remove</button>
+                                    <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
+                                </td>
                             </tr>
 
                         )}
@@ -43,7 +48,8 @@ const Operations = () => {
                         <tr>
                             <td></td>
                             <td>Total</td>
-                            <td>{totalExp()}</td>
+                            <td>{total(expenses)}</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -63,6 +69,7 @@ const Operations = () => {
                             <th>Amount</th>
                             <th>Category</th>
                             <th>Date</th>
+                            <th>Updates</th>
                         </tr>
                     </thead>
 
@@ -75,6 +82,10 @@ const Operations = () => {
                                 <td>{el.operation.amount}</td>
                                 <td>{el.operation.category}</td>
                                 <td>{el.operation.date ? el.operation.date : date}</td>
+                                <td className="updates">
+                                    <button onClick={() => removeItem(el.id)}>Remove</button>
+                                    <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
+                                </td>
                             </tr>
 
                         )}
@@ -84,7 +95,8 @@ const Operations = () => {
                         <tr>
                             <td></td>
                             <td>Total</td>
-                            <td>{totalInc()}</td>
+                            <td>{total(incomes)}</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                         </tr>

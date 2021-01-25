@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
-import './Header.styles.scss';
+import './Header.scss';
 import { OperationsContext } from '../../contexts/OperationsContext';
+import { total } from '../../components/operationsDisplay/Operations';
 
 const Header = () => {
-    const { totalExp, totalInc, handleSearchInput, currentMonth } = useContext(OperationsContext);
-    
-    let percentage = ((totalExp()/totalInc())*100).toFixed(2);
-    let balance = totalInc() - totalExp();
+    const { expenses, incomes, handleSearchInput, currentMonth } = useContext(OperationsContext);
+
+    const totalIncomes = total(incomes);
+    const totalExpenses = total(expenses);
+
+    let percentage = (totalExpenses/totalIncomes*100).toFixed(2);
+    let balance = totalIncomes - totalExpenses;
 
     return(
     <div className="budget-head">
@@ -17,19 +21,14 @@ const Header = () => {
 
         <div className="incomes">
             <span className="incomes-text">Incomes </span> 
-            <span className="inc-value">{totalInc()}  Lei</span>
+            <span className="inc-value">{totalIncomes}  Lei</span>
         </div>
 
         <div className="expenses">
             <span className="expenses-text"> Expenses </span>
-            <span className="percentage">{totalInc() === 0  ? 0 : percentage} %</span> 
-            <span className="exp-value">{totalExp()}  Lei</span>  
+            <span className="percentage">{totalIncomes === 0  ? 0 : percentage} %</span> 
+            <span className="exp-value">{totalExpenses}  Lei</span>  
             
-        </div>
-
-        <div className="search-month">
-            <input type="text" placeholder="Check another month..." onChange={handleSearchInput} />
-            <button type="submit">Check</button>  
         </div>
     </div>
     );

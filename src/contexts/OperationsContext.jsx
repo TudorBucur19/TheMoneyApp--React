@@ -7,19 +7,11 @@ export const OperationsContext = createContext();
 
 const OperationsContextProvider = (props) => {
     
-    const [operation, setOperation] = useState({});
+    const [operation, setOperation] = useState({category: "Other"});
     const operations = useEntries();
 
-    const expenses = operations.filter(el => el.operation.typeOf === "expense");
-    const incomes = operations.filter(el => el.operation.typeOf === "income");
-    const expAmountList = expenses.map(el => Number(el.operation.amount));
-    const incAmountList = incomes.map(el => Number(el.operation.amount));    
-    
-    
-    const totalExp = () => expAmountList.reduce((total, el) => total = total + el, 0);
-    const totalInc = () => incAmountList.reduce((total, el) => total = total + el, 0);
-    
-    
+    const expenses = operations.filter(el => el.operation.type === "expense");
+    const incomes = operations.filter(el => el.operation.type === "income");
 
     let monthNumber = new Date().getMonth();
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -28,6 +20,7 @@ const OperationsContextProvider = (props) => {
     
     const handleChange = (event) => {
         const value = event.target.value;
+        console.log(operation);
         setOperation({
           ...operation, 
           [event.target.name]: value
@@ -39,7 +32,7 @@ const OperationsContextProvider = (props) => {
 
     function onSubmit(event)  {
         event.preventDefault()
-    
+  
         db.collection(`${currentMonth}`)
         .add({
             operation
@@ -50,9 +43,9 @@ const OperationsContextProvider = (props) => {
             amount: "",
             category: "",
             date: "",
-            typeOf: ""
+            type: ""
           }); 
-        })
+        }) 
     }
 
     function useEntries() {
@@ -67,8 +60,7 @@ const OperationsContextProvider = (props) => {
                     ...doc.data()
                 }))
                 setEntries(newEntry);
-                console.log(newEntry);
-            })
+                })
             return () => unsubscribe();
         }, [])
     
@@ -81,12 +73,22 @@ const OperationsContextProvider = (props) => {
         .collection(`${currentMonth}`)
         .doc(id)
         .delete()
-        .then(() => console.log("Document deleted"))
-        .catch((error) => console.error("Error deleting document", error));   
+        .then(() => console.log("Document was deleted"))
+        .catch((error) => console.error("Error deleting document", error));
     };
 
-    const values = { operation, onSubmit, handleChange, expenses, totalExp, incomes, totalInc, 
-         currentMonth, removeItem }
+    const updateItem = (id, item) => {
+        firebase
+        .firestore()
+        .collection(`${currentMonth}`)
+        .doc(id)
+        .update({operation: {...item, category: "proba"}})
+        .then(() => console.log("Document was updated"))
+        .catch((error) => console.error("Error deleting document", error));
+    }
+
+    const values = { operation, onSubmit, handleChange, expenses, incomes, 
+         currentMonth, removeItem, updateItem }
     
     return ( 
         <OperationsContext.Provider value={ values }>

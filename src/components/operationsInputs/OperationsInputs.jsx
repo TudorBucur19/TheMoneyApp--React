@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import './Operations.Inputs.styles.scss';
+import './OperationsInputs.scss';
 import OperationsContextProvider from '../../contexts/OperationsContext';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
@@ -11,9 +11,9 @@ const OperationsForm = () => {
     const handleCategUpdate = () => {
         const newCateg = prompt("Add new category!");
         try{
-                operation.typeOf === "expense" ?
+                operation.type === "expense" ?
                 newCateg.length > 0 && setExpCategories([...expCategories, newCateg]) :
-                operation.typeOf === "income" ?  
+                operation.type === "income" ?  
                 newCateg.length > 0 && setIncCategories([...incCategories, newCateg]) :
                 alert("Select an option") 
             }               
@@ -24,11 +24,10 @@ const OperationsForm = () => {
 
     const getBtnStyle = () => {
         let classes;
-        classes = operation.typeOf === "expense" ? "buttons-exp" :
-                  operation.typeOf === "income" ? "buttons-inc" :
+        classes = operation.type === "expense" ? "buttons-exp" :
+                  operation.type === "income" ? "buttons-inc" :
                   "";
-        console.log(classes)
-        return classes;        
+                return classes;        
     }
 
     
@@ -38,13 +37,11 @@ const OperationsForm = () => {
             <OperationsContextProvider>                       
             <div className="ops-form">Add new operation:
             <form onSubmit={onSubmit}>
+                <form onChange={handleChange} value={operation.type}>
+                    <input type="radio" name="type" value={"expense"}/>Expense               
+                    <input type="radio" name="type" value={"income"}/>Income
+                </form>
                 
-                <select name="typeOf" onChange={handleChange} value={operation.typeOf} required>
-                    <option value="">--Exp/Inc--</option>
-                    <option value={"expense"}>-</option>
-                    <option value={"income"}>+</option>
-                </select>
-
                 <input 
                 type="text" 
                 placeholder="Description..." 
@@ -64,23 +61,21 @@ const OperationsForm = () => {
                 required
                 />
                 
-                {operation.typeOf === "expense" &&                
+                {operation.type === "expense" &&                
                     <select name="category" onChange={handleChange} value={operation.category} required>
-                        {expCategories.map(category => 
-                            <option value={category}>{category}</option>
+                        {expCategories.map((category) => 
+                            <option value={category} >{category}</option>
                             )}
                     </select>
                 }
                     
-                {operation.typeOf === "income" &&
+                {operation.type === "income" &&
                     <select name="category" onChange={handleChange} value={operation.category} required>
                         {incCategories.map(category => 
                             <option value={category}>{category}</option>
                             )}
                     </select>
                 }
-
-                
 
                 <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
                 <button className={getBtnStyle()} type="submit">ADD</button>
