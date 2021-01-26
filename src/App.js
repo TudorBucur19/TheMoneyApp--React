@@ -4,6 +4,7 @@ import OperationsForm from './components/operationsInputs/OperationsInputs';
 import Operations from './components/operationsDisplay/Operations';
 import Header from './components/header/Header';
 import OperationsContextProvider from './contexts/OperationsContext';
+import EditForm from './components/ModalForm/ModalForm';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <div className="tables">
             <Operations/>
           </div>
+          <EditForm/>
       </OperationsContextProvider>    
     </div>
   );

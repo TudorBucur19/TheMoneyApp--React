@@ -5,7 +5,7 @@ import { OperationsContext } from '../../contexts/OperationsContext';
 export const total = (list) => list.reduce((total, el) => total = total + Number(el.operation.amount), 0);
 
 const Operations = () => {
-    const { expenses, incomes, removeItem, updateItem } = useContext(OperationsContext);
+    const { expenses, incomes, removeItem, updateItem, toggleModal } = useContext(OperationsContext);
 
 
     let today = new Date(),
@@ -37,7 +37,8 @@ const Operations = () => {
                                 <td>{el.operation.date ? el.operation.date : date}</td>
                                 <td className="updates">
                                     <button onClick={() => removeItem(el.id)}>Remove</button>
-                                    <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
+                                    <button onClick={toggleModal}>Edit</button>
+                                    {/* <button onClick={() => updateItem(el.id, el.operation)}>Edit</button> */}
                                 </td>
                             </tr>
 
