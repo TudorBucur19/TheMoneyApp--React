@@ -5,16 +5,17 @@ import { OperationsContext } from '../../contexts/OperationsContext';
 
 const OperationsForm = () => {
     const { operation, onSubmit, handleChange } = useContext(OperationsContext)
-    const [expCategories, setExpCategories] = useState(["Groceries", "Rent", "Utilities", "Car"]);
-    const [incCategories, setIncCategories] = useState(["Salary", "Stocks", "Bonus"]);
+    const [expenseCategories, setExpenseCategories] = useState(["Groceries", "Rent", "Utilities", "Car"]);
+    const [incomeCategories, setIncomeCategories] = useState(["Salary", "Stocks", "Bonus"]);
+
     
-    const handleCategUpdate = () => {
-        const newCateg = prompt("Add new category!");
+    const handleCategoryUpdate = () => {
+        const newCategory = prompt("Add new category!");
         try{
                 operation.type === "expense" ?
-                newCateg.length > 0 && setExpCategories([...expCategories, newCateg]) :
+                newCategory.length > 0 && setExpenseCategories([...expenseCategories, newCategory]) :
                 operation.type === "income" ?  
-                newCateg.length > 0 && setIncCategories([...incCategories, newCateg]) :
+                newCategory.length > 0 && setIncomeCategories([...incomeCategories, newCategory]) :
                 alert("Select an option") 
             }               
              catch(err) {
@@ -63,15 +64,15 @@ const OperationsForm = () => {
                 
                 {operation.type === "expense" &&                
                     <select name="category" onChange={handleChange} value={operation.category} required>
-                        {expCategories.map((category) => 
-                            <option value={category} >{category}</option>
+                        {expenseCategories.map((category) => 
+                            <option key={category} value={category} >{category}</option>
                             )}
                     </select>
                 }
                     
                 {operation.type === "income" &&
                     <select name="category" onChange={handleChange} value={operation.category} required>
-                        {incCategories.map(category => 
+                        {incomeCategories.map(category => 
                             <option value={category}>{category}</option>
                             )}
                     </select>
@@ -79,7 +80,7 @@ const OperationsForm = () => {
 
                 <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
                 <button className={getBtnStyle()} type="submit">ADD</button>
-                <button className={getBtnStyle()} onClick={handleCategUpdate}>
+                <button className={getBtnStyle()} onClick={handleCategoryUpdate}>
                     Add New Category
                 </button>
                 
