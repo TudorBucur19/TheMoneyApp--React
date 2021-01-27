@@ -1,44 +1,40 @@
 @import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
 
-.ops-form {
+.operations-form {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 56%;    
+    margin: 1% 3%;    
     padding: 5px;
-    margin-left: 3%;
-    
 
+    .operation-type {
+        align-self: center;
+    }
+    
     input {
-        margin: 4px;
-        padding: 3px;
-        font-size: 1em;
-        border: 1px solid $inputBorders;
-        border-radius: 4px;
-        
+        @include input-fields;        
     }
 
     select {
-        font-size: 1em;
-        padding: 3px;
-        border: 1px solid $inputBorders;
-        border-radius: 4px;
+        @include input-fields;
     }
-}
 
-button {
-    border-radius: 6px;
-    border-style: none;
-    font-size: 1em;
-    padding: 0.5em;
-    margin: 4px;
-    background: $btnBg; 
-    color: $btnText;   
-}
-
-.buttons-exp {
-   background: $expBg;
-   color: $btnText;
-}
-  
-.buttons-inc {
-    background: $incBg;
-    color: $btnText;
+    button {
+        @include button;
+    }
     
-  }
+    .expense-btn {
+        background: $expBg;
+        color: $btnText;
+     }
+       
+     .income-btn {
+         background: $incBg;
+         color: $btnText;    
+       }
+}
+
+ 
+

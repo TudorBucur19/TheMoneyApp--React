@@ -3,38 +3,57 @@
 
 .tables-container {
     margin-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     
-  .expenses-display {
-    @include table-display;
-  }
-  
-  .incomes-display {
-    @include table-display;
-  }
+    
+    .expenses-display {
+      @include table-display;
+      flex-grow: 1;
+      
+      .expense-header th {
+        @include table-header;
+        background: $expBg;    
+      }   
+        
+      .expense-footer {
+        background: $expBg;
+        font-weight: bold;
+      }
+    
+    }
+    
+    .incomes-display {
+      @include table-display;    
+      flex-grow: 1;
+
+      .income-header th {
+        @include table-header;
+        background: $incBg;
+      }
+      
+      .income-footer {
+        background: $incBg;
+        font-weight: bold;
+      }
+    }
+
+    
+
+    button {
+      @include button;
+      padding: 0.3em;   
+    }
 }
   
 
   
-.exp-header th {
-  @include table-header;
-  background: $expBg;    
-}
-  
-  
-.exp-foot {
-  background: $expBg;
-}
+
 
   
 
-.inc-header th {
-  @include table-header;
-  background: $incBg;
-}
 
-.inc-foot {
-  background: $incBg;
-}
 
   
 

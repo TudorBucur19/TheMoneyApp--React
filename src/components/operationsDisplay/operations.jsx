@@ -14,10 +14,10 @@ const Operations = () => {
 
     return (
         <div className="tables-container">
-            <div>
+            
                 <table className="expenses-display">
                     <thead>
-                        <tr className="exp-header">
+                        <tr className="expense-header">
                             <th>Crt.</th>
                             <th>Description</th>
                             <th>Amount</th>
@@ -35,7 +35,7 @@ const Operations = () => {
                                 <td>{el.operation.amount}</td>
                                 <td>{el.operation.category}</td>
                                 <td>{el.operation.date ? el.operation.date : date}</td>
-                                <td className="updates">
+                                <td>
                                     <button onClick={() => removeItem(el.id)}>Remove</button>
                                     <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
                                 </td>
@@ -44,7 +44,7 @@ const Operations = () => {
                         )}
                     </tbody>
 
-                    <tfoot className="exp-foot">
+                    <tfoot className="expense-footer">
                         <tr>
                             <td></td>
                             <td>Total</td>
@@ -57,13 +57,13 @@ const Operations = () => {
 
                 </table>
 
-            </div>
+           
 
 
-            <div>
+            
                 <table className="incomes-display">
                     <thead>
-                        <tr className="inc-header">
+                        <tr className="income-header">
                             <th>Crt.</th>
                             <th>Description</th>
                             <th>Amount</th>
@@ -91,7 +91,7 @@ const Operations = () => {
                         )}
                     </tbody>
 
-                    <tfoot className="inc-foot">
+                    <tfoot className="income-footer">
                         <tr>
                             <td></td>
                             <td>Total</td>
@@ -104,7 +104,7 @@ const Operations = () => {
 
                 </table>
 
-            </div>
+            
         </div>
     )
 };

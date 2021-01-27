@@ -3,10 +3,7 @@
 @mixin table-display {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 45%;
-    float: left;
-    margin-left: 3%;
-
+    margin: 3%;
     td {    
         text-align: center;
         padding: 8px;
@@ -21,3 +18,32 @@
     text-align: center;
     padding: 8px;
 }
+
+@mixin header-totals {
+  display: flex;
+  justify-content: space-between;
+  font-family: arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 25%;  
+  padding: 0.6%;
+  margin: 0.5%;
+}
+
+@mixin input-fields {
+      margin: 4px;
+      padding: 3px;
+      font-size: 1em;
+      border: 1px solid $inputBorders;
+      border-radius: 4px;      
+  }
+
+@mixin button {
+        border-radius: 6px;
+        border-style: none;
+        font-size: 1em;
+        padding: 0.5em;
+        margin: 4px;
+        background: $btnBg; 
+        color: $btnText;   
+    }
