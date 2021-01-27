@@ -1,3 +1,5 @@
+@import '../../scss/variables.scss';
+
 .search-month {
     padding-left: 3%;
     
@@ -20,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    background-color:#05e383;
+    background-color: $incBg;
     max-width: 25%;
     margin: 0 auto;
     padding: 8px;
@@ -30,7 +32,7 @@
     display: flex;
     direction: row;
     justify-content: space-between;
-    background-color: #FF5049;
+    background-color: $expBg;
     max-width: 25%;
     margin: 15px auto;
     padding: 8px;
@@ -47,24 +49,8 @@
 }
 
 
-/* .expenses-text {
-    font-size: 13px;
-    color: #444;
-    margin-top: 2px;
-} */
-
-/* .incValue,
-.expValue {
-    letter-spacing: 1px;
-    float: left;
-} */
-
-
-
 .inc--value {
     float: right;
 }
-// .exp--value {
-//     float: right;
-// }
+
 

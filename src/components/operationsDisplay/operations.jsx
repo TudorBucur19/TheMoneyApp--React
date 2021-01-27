@@ -82,7 +82,7 @@ const Operations = () => {
                                 <td>{el.operation.amount}</td>
                                 <td>{el.operation.category}</td>
                                 <td>{el.operation.date ? el.operation.date : date}</td>
-                                <td className="updates">
+                                <td>
                                     <button onClick={() => removeItem(el.id)}>Remove</button>
                                     <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
                                 </td>

@@ -1,59 +1,41 @@
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
 
 .tables-container {
-  margin-top: 3%;
-}
+    margin-top: 3%;
+    
   .expenses-display {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 45%;
-    float: left;
-    margin-left: 3%;
+    @include table-display;
   }
-
+  
   .incomes-display {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 45%;
-    float: left;
-    margin-left: 3%;
+    @include table-display;
   }
-
-
-
-  .exp-header {
-    background: #FF5049;
-    text-align: left;
-    padding: 8px;
-  }
+}
   
-  td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f3f3f3;
-  }
 
-  .exp-foot {
-    background: #FF5049;
-  }
+  
+.exp-header th {
+  @include table-header;
+  background: $expBg;    
+}
+  
+  
+.exp-foot {
+  background: $expBg;
+}
 
   
 
-  .inc-header {
-    background: #05e383;
-    text-align: left;
-    padding: 8px;
-  }
+.inc-header th {
+  @include table-header;
+  background: $incBg;
+}
 
-  .inc-foot {
-    background: #05e383;
-  }
+.inc-foot {
+  background: $incBg;
+}
 
-  .updates {
-    text-align: center;
-  }
+  
 
   

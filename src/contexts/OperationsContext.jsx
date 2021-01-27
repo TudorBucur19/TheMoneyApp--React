@@ -42,8 +42,7 @@ const OperationsContextProvider = (props) => {
             description: "",
             amount: "",
             category: "",
-            date: "",
-            type: ""
+            date: ""            
           }); 
         }) 
     }

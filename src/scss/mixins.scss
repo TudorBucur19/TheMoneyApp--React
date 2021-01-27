@@ -1,0 +1,23 @@
+@import '../scss/variables.scss';
+
+@mixin table-display {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 45%;
+    float: left;
+    margin-left: 3%;
+
+    td {    
+        text-align: center;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #f3f3f3;
+      }
+}
+
+@mixin table-header {
+    text-align: center;
+    padding: 8px;
+}
