@@ -5,16 +5,20 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    width: 56%;    
+    width: 100%;    
     margin: 1% 3%;    
     padding: 5px;
+
+    @include mQ(1920px){
+        width: 100%;
+    }
 
     .operation-type {
         align-self: center;
     }
     
     input {
-        @include input-fields;        
+        @include input-fields;      
     }
 
     select {

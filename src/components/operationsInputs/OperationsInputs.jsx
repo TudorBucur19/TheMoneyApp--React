@@ -5,18 +5,21 @@ import { OperationsContext } from '../../contexts/OperationsContext';
 
 const OperationsForm = () => {
     const { operation, onSubmit, handleChange } = useContext(OperationsContext)
-    const [expenseCategories, setExpenseCategories] = useState(["Groceries", "Rent", "Utilities", "Car"]);
-    const [incomeCategories, setIncomeCategories] = useState(["Salary", "Stocks", "Bonus"]);
+    const [expenseCategories, setExpenseCategories] = useState(["Groceries", "Rent", "Utilities", "Car", "Add new category"]);
+    const [incomeCategories, setIncomeCategories] = useState(["Salary", "Stocks", "Bonus", "Add new category"]);
 
     
     const handleCategoryUpdate = () => {
         const newCategory = prompt("Add new category!");
+        const newList = (array) => 
+        [...array.slice(0, array.length-1), newCategory, ...array.slice(array.length-1)];
+        
         try{
                 operation.type === "expense" ?
-                newCategory.length > 0 && setExpenseCategories([...expenseCategories, newCategory]) :
+                newCategory.length > 0 && setExpenseCategories(newList(expenseCategories)) :
                 operation.type === "income" ?  
-                newCategory.length > 0 && setIncomeCategories([...incomeCategories, newCategory]) :
-                alert("Select an option") 
+                newCategory.length > 0 && setIncomeCategories(newList(incomeCategories)) :
+                alert("Please select an option!") 
             }               
              catch(err) {
                 alert(err.message);
@@ -61,9 +64,27 @@ const OperationsForm = () => {
                     onChange={handleChange}
                     required
                     />
+                                  
+                        <select name="category" onChange={(event) => handleChange(event, handleCategoryUpdate)} value={operation.category} required>
+                                <option selected disabled>Category</option>
+
+                            {
+                            operation.type === "expense" ? 
+                            expenseCategories.map((category) => 
+                                <option key={category} value={category} >{category}</option>)
+                            : 
+                            operation.type === "income" ?
+                            incomeCategories.map((category) => 
+                                <option key={category} value={category} >{category}</option>)
+                            :
+                            console.log("no option")
+                            }
+                        </select>
                     
-                    {operation.type === "expense" &&                
-                        <select name="category" onChange={handleChange} value={operation.category} required>
+                    
+                    {/* {operation.type === "expense" &&                
+                        <select name="category" onChange={(event) => handleChange(event, handleCategoryUpdate)} value={operation.category} required>
+                                <option selected disabled>Category</option>
                             {expenseCategories.map((category) => 
                                 <option key={category} value={category} >{category}</option>
                                 )}
@@ -71,12 +92,13 @@ const OperationsForm = () => {
                     }
                         
                     {operation.type === "income" &&
-                        <select name="category" onChange={handleChange} value={operation.category} required>
+                        <select name="category" onChange={(event) => handleChange(event, handleCategoryUpdate)} value={operation.category} required>
+                                <option selected disabled>Category</option>
                             {incomeCategories.map(category => 
                                 <option value={category}>{category}</option>
                                 )}
                         </select>
-                    }
+                    } */}
 
                     <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
                     <button className={getBtnStyle()} type="submit">ADD</button>

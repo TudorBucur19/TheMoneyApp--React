@@ -19,8 +19,13 @@ const OperationsContextProvider = (props) => {
     let currentMonth = monthNames[monthNumber];
     
     
-    const handleChange = (event) => {
+    const handleChange = (event, callBack) => {
         const value = event.target.value;
+        if (value === "Add new category") {
+            callBack()
+            return;
+        };
+        
         setOperation({
           ...operation, 
           [event.target.name]: value
@@ -42,7 +47,8 @@ const OperationsContextProvider = (props) => {
             description: "",
             amount: "",
             category: "",
-            date: ""            
+            date: "",
+            type: operation.type          
           }); 
         }) 
     }
