@@ -1,0 +1,44 @@
+@import '../../scss/variables.scss';
+@import '../../scss/mixins.scss';
+
+.operations-form {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;    
+    margin: 1% 3%;    
+    padding: 5px;
+
+    @include mQ(1920px){
+        width: 100%;
+    }
+
+    .operation-type {
+        align-self: center;
+    }
+    
+    input {
+        @include input-fields;      
+    }
+
+    select {
+        @include input-fields;
+    }
+
+    button {
+        @include button;
+    }
+    
+    .expense-btn {
+        background: $expBg;
+        color: $btnText;
+     }
+       
+     .income-btn {
+         background: $incBg;
+         color: $btnText;    
+       }
+}
+
+ 
+
