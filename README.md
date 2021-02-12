@@ -6,7 +6,7 @@ This is a simple personal finances tracker which calculates your available month
 In this project I learned and used the following concepts:
  - React Hooks;
  - React Context;
- - Connecting the app to an external database (google firestore);
+ - Connecting the app to a database (google firestore);
  - Styling with SASS;
  
  Still working on this to improve the UI, and to add new features.
