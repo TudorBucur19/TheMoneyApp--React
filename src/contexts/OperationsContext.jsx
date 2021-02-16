@@ -8,8 +8,15 @@ const OperationsContextProvider = (props) => {
     
     const [operation, setOperation] = useState({});
     const operations = useEntries();
+    
 
-    const editOperation = {description: "test", amount: 330, category: "newcateg", type: "expense", date: "2021-01-20"}
+    const editOperation = {
+        description: "test", 
+        amount: 330, 
+        category: "newcateg", 
+        type: "expense", 
+        date: "2021-01-20"
+    }
 
     const expenses = operations.filter(el => el.operation.type === "expense");
     const incomes = operations.filter(el => el.operation.type === "income");
@@ -17,6 +24,8 @@ const OperationsContextProvider = (props) => {
     let monthNumber = new Date().getMonth();
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let currentMonth = monthNames[monthNumber];
+
+    const [historyMonth, setHistoryMonth] = useState(currentMonth);
     
     
     const handleChange = (event, callBack) => {
@@ -68,7 +77,7 @@ const OperationsContextProvider = (props) => {
                 setEntries(newEntry);
                 })
             return () => unsubscribe();
-        }, [])
+        },[])
     
         return entries;
     };
@@ -95,9 +104,24 @@ const OperationsContextProvider = (props) => {
         .catch((error) => console.error("Error deleting document", error));
     };
 
+    const getHistoryMonth = (e) => {
+        setHistoryMonth(e.target.value);       
+    }
 
-    const values = { operation, onSubmit, handleChange, expenses, incomes, 
-                    currentMonth, removeItem, updateItem }
+
+    const values = { 
+        operation, 
+        onSubmit, 
+        handleChange, 
+        expenses, 
+        incomes,
+        currentMonth, 
+        removeItem, 
+        updateItem, 
+        monthNames, 
+        getHistoryMonth, 
+        historyMonth 
+    }
     
     return ( 
         <OperationsContext.Provider value={ values }>

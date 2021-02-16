@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <OperationsContextProvider>        
           <Header/>
+          
           <div className="input-fields">
             <OperationsForm/>          
           </div>

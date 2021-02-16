@@ -4,7 +4,7 @@ import OperationsContextProvider from '../../contexts/OperationsContext';
 import { OperationsContext } from '../../contexts/OperationsContext';
 
 const OperationsForm = () => {
-    const { operation, onSubmit, handleChange } = useContext(OperationsContext)
+    const { operation, onSubmit, handleChange, monthNames, getHistoryMonth, useEntries } = useContext(OperationsContext)
     const [expenseCategories, setExpenseCategories] = useState(["Groceries", "Rent", "Utilities", "Car", "Add new category"]);
     const [incomeCategories, setIncomeCategories] = useState(["Salary", "Stocks", "Bonus", "Add new category"]);
 
@@ -65,9 +65,13 @@ const OperationsForm = () => {
                     required
                     />
                                   
-                        <select name="category" onChange={(event) => handleChange(event, handleCategoryUpdate)} value={operation.category} required>
-                                <option selected disabled>Category</option>
+                        <select 
+                        name="category" 
+                        onChange={(event) => handleChange(event, handleCategoryUpdate)} 
+                        value={operation.category} 
+                        required>
 
+                                <option selected disabled>Category</option>
                             {
                             operation.type === "expense" ? 
                             expenseCategories.map((category) => 
@@ -100,13 +104,22 @@ const OperationsForm = () => {
                         </select>
                     } */}
 
-                    <input type="date" name="date" onChange={handleChange} value={operation.date}/>                
-                    <button className={getBtnStyle()} type="submit">ADD</button>
-                    <button className={getBtnStyle()} onClick={handleCategoryUpdate}>
-                        Add New Category
-                    </button>
-                    
+                    <input 
+                    type="date"
+                    name="date" 
+                    onChange={handleChange} 
+                    value={operation.date}/> 
+                                   
+                    <button className={getBtnStyle()} type="submit">ADD</button>                    
                 </form>
+                
+                {/* <select name="historyMonth" onChange={getHistoryMonth}>
+                    { monthNames.map(month =>
+                        <option key={month} value={month}>{month}</option>
+                    )
+                    }
+                </select> */}
+                
             </div>                      
             </OperationsContextProvider>                     
         </div>

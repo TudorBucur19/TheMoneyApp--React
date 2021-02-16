@@ -1,5 +1,6 @@
 @import '../../scss/variables.scss';
 @import '../../scss/mixins.scss';
+@import '../../scss/extends.scss';
 
 .tables-container {
     margin-top: 3%;
@@ -9,11 +10,11 @@
     
     
     .expenses-display {
-      @include table-display;
+      @extend %table-display;
       flex-grow: 1;
       
       .expense-header th {
-        @include table-header;
+        @extend %table-header;
         background: $expBg;    
       }   
         
@@ -25,11 +26,11 @@
     }
     
     .incomes-display {
-      @include table-display;    
+      @extend %table-display;    
       flex-grow: 1;
 
       .income-header th {
-        @include table-header;
+        @extend %table-header;
         background: $incBg;
       }
       
@@ -42,7 +43,7 @@
     
 
     button {
-      @include button;
+      @extend %button;
       padding: 0.3em;   
     }
 }

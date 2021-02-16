@@ -1,5 +1,6 @@
 @import '../../scss/variables.scss';
 @import '../../scss/mixins.scss';
+@import '../../scss/extends.scss';
 
 .operations-form {
     display: flex;
@@ -18,15 +19,15 @@
     }
     
     input {
-        @include input-fields;      
+        @extend %input-fields;      
     }
 
     select {
-        @include input-fields;
+        @extend %input-fields;
     }
 
     button {
-        @include button;
+        @extend %button;
     }
     
     .expense-btn {
