@@ -54,12 +54,7 @@ const Operations = () => {
                             <td></td>
                         </tr>
                     </tfoot>
-
                 </table>
-
-           
-
-
             
                 <table className="incomes-display">
                     <thead>

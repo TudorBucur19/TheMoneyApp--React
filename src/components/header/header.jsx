@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Header.scss';
 import { OperationsContext } from '../../contexts/OperationsContext';
-import { total } from '../../components/operationsDisplay/Operations';
+import { total } from '../OperationsDisplay/Operations';
 
 const Header = () => {
     const { expenses, incomes, currentMonth } = useContext(OperationsContext);
