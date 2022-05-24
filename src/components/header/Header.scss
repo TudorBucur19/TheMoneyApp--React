@@ -1,5 +1,6 @@
 @import '../../scss/variables.scss';
 @import '../../scss/mixins.scss';
+@import '../../scss/extends.scss';
 
 .header {
     display: flex;
@@ -9,12 +10,12 @@
     text-align: center;
 
     .incomes {
-        @include header-totals;
+        @extend %header-totals;
         background-color: $incBg;
     }
 
     .expenses {
-        @include header-totals;
+        @extend %header-totals;
         background-color: $expBg;
 
         .percentage {
