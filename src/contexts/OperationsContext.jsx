@@ -1,13 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 import firebase from '../utils/firebase';
+import { useSelector } from 'react-redux';
+import { getCurrentDate } from '../utils/helperFunctions';
 
 export const OperationsContext = createContext();
 
-
-const OperationsContextProvider = (props) => {
-    
+const OperationsContextProvider = (props) => {    
     const [operation, setOperation] = useState({});
-    const operations = useEntries();
+    const { operationType } = useSelector(state => state);
+    const currentMonth = getCurrentDate();
     
 
     const editOperation = {
@@ -17,13 +18,6 @@ const OperationsContextProvider = (props) => {
         type: "expense", 
         date: "2021-01-20"
     }
-
-    const expenses = operations.filter(el => el.operation.type === "expense");
-    const incomes = operations.filter(el => el.operation.type === "income");
-
-    let monthNumber = new Date().getMonth();
-    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let currentMonth = monthNames[monthNumber];
 
     const [historyMonth, setHistoryMonth] = useState(currentMonth);
     
@@ -42,45 +36,15 @@ const OperationsContextProvider = (props) => {
       };
 
     // ADDING OPERATIONS TO DATABASE  
-    const db = firebase.firestore();
 
-    function onSubmit(event)  {
-        event.preventDefault()
-  
-        db.collection(`${currentMonth}`)
+    function onSubmit(data)  {
+        firebase.firestore()
+        .collection(`${currentMonth}`)
         .add({
-            operation
+            ...data,
+            type: operationType
         })
-        .then(() => {
-          setOperation({
-            description: "",
-            amount: "",
-            category: "",
-            date: "",
-            type: operation.type          
-          }); 
-        }) 
     }
-
-    // GETTING OPERATIONS LIST FROM DATABASE
-    function useEntries() {
-        const [entries, setEntries] = useState([]);
-        
-        useEffect(() => {
-            const unsubscribe = db
-            .collection(`${currentMonth}`)
-            .onSnapshot((snapshot) => {
-                const newEntry = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data()
-                }))
-                setEntries(newEntry);
-                })
-            return () => unsubscribe();
-        },[])
-    
-        return entries;
-    };
 
     //REMOVE ITEMS FROM DATABASE
     const removeItem = (id) => {
@@ -113,12 +77,8 @@ const OperationsContextProvider = (props) => {
         operation, 
         onSubmit, 
         handleChange, 
-        expenses, 
-        incomes,
-        currentMonth, 
         removeItem, 
-        updateItem, 
-        monthNames, 
+        updateItem,  
         getHistoryMonth, 
         historyMonth 
     }

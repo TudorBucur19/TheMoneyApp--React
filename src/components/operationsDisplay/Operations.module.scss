@@ -1,0 +1,28 @@
+@import '../../scss/variables.scss';
+
+.tablesContainer {
+    margin-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+    
+.typeExpense {
+    background-color: $expBg;
+}
+
+.typeIncome {
+    background-color: $incBg;
+}    
+
+
+  
+
+
+  
+
+
+
+  
+
+  

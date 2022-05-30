@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import './Header.scss';
+import { useSelector } from 'react-redux';
+
 import { OperationsContext } from '../../contexts/OperationsContext';
-import { total } from '../OperationsDisplay/Operations';
+import { totalAmountCalculator } from '../../utils/helperFunctions';
+import './Header.scss';
 
 const Header = () => {
-    const { expenses, incomes, currentMonth } = useContext(OperationsContext);
+    const { currentMonth } = useContext(OperationsContext);
+    const { incomes, expenses } = useSelector(state => state.operationsLists);
 
-    const totalIncomes = total(incomes);
-    const totalExpenses = total(expenses);
+    const totalIncomes = totalAmountCalculator(incomes);
+    const totalExpenses = totalAmountCalculator(expenses);
 
     let percentage = (totalExpenses/totalIncomes*100).toFixed(2);
     let balance = totalIncomes - totalExpenses;
