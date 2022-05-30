@@ -1,105 +1,48 @@
-import React, { useContext } from 'react';
-import './Operations.scss';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { OperationsContext } from '../../contexts/OperationsContext';
+import OperationsTable from './OperationTable/OperationsTable';
+import { useDatabaseCalls } from '../../utils/customHooks/useDatabaseCalls';
+import { getCurrentDate } from '../../utils/helperFunctions';
+import { setOperationsLists } from '../../redux/ducks/operationsList';
+import styles from './Operations.module.scss'
 
-export const total = (list) => list.reduce((total, el) => total = total + Number(el.operation.amount), 0);
+
+//export const total = (list) => list.reduce((total, el) => total = total + Number(el.amount), 0);
 
 const Operations = () => {
-    const { expenses, incomes, removeItem, updateItem } = useContext(OperationsContext);
+    const { removeItem, updateItem } = useContext(OperationsContext);
+    const currentMonth = getCurrentDate();
+    const operations = useDatabaseCalls(currentMonth);
+    const dispatch = useDispatch();
+    const expenses = operations.filter(el => el.type === "expense");
+    const incomes = operations.filter(el => el.type === "income");
 
-
-    let today = new Date(),
-        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
+    useEffect(() => {
+        dispatch(setOperationsLists({incomes, expenses}))
+    }, [operations]);
+    
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const { tablesContainer, typeExpense, typeIncome } = styles;
 
     return (
-        <div className="tables-container">
+        <div className={tablesContainer}>
+            <OperationsTable
+            operationsList={expenses} 
+            removeAction={removeItem} 
+            updateAction={updateItem} 
+            currentDate={date}
+            typeClassName={typeExpense}
+            />
             
-                <table className="expenses-display">
-                    <thead>
-                        <tr className="expense-header">
-                            <th>Crt.</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Date</th>
-                            <th>Updates</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {expenses.map((el, index) =>
-                            <tr key={el.id}>
-                                <td >{index + 1}</td>
-                                <td>{el.operation.description} </td>
-                                <td>{el.operation.amount}</td>
-                                <td>{el.operation.category}</td>
-                                <td>{el.operation.date ? el.operation.date : date}</td>
-                                <td>
-                                    <button onClick={() => removeItem(el.id)}>Remove</button>
-                                    <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
-                                </td>
-                            </tr>
-
-                        )}
-                    </tbody>
-
-                    <tfoot className="expense-footer">
-                        <tr>
-                            <td></td>
-                            <td>Total</td>
-                            <td>{total(expenses)}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            
-                <table className="incomes-display">
-                    <thead>
-                        <tr className="income-header">
-                            <th>Crt.</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Date</th>
-                            <th>Updates</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {incomes.map((el, index) =>
-
-                            <tr key={el.id}>
-                                <td>{index + 1}</td>
-                                <td>{el.operation.description} </td>
-                                <td>{el.operation.amount}</td>
-                                <td>{el.operation.category}</td>
-                                <td>{el.operation.date ? el.operation.date : date}</td>
-                                <td>
-                                    <button onClick={() => removeItem(el.id)}>Remove</button>
-                                    <button onClick={() => updateItem(el.id, el.operation)}>Edit</button>
-                                </td>
-                            </tr>
-
-                        )}
-                    </tbody>
-
-                    <tfoot className="income-footer">
-                        <tr>
-                            <td></td>
-                            <td>Total</td>
-                            <td>{total(incomes)}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-
-                </table>
-
-            
+            <OperationsTable
+            operationsList={incomes} 
+            removeAction={removeItem} 
+            updateAction={updateItem} 
+            currentDate={date}
+            typeClassName={typeIncome}
+            />
         </div>
     )
 };

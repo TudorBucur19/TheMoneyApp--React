@@ -1,0 +1,28 @@
+    
+.tableDisplay {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    margin: 3%;
+    flex-grow: 1;
+
+    td {    
+      text-align: center;
+      padding: 8px;
+    }
+      
+    tr:nth-child(even) {
+      background-color: #f3f3f3;
+    }
+      
+    .tableHeader th {
+      text-align: center;
+      padding: 8px;    
+    }   
+      
+    .tableFooter {
+      font-weight: bold;
+    }    
+}   
+
+
+    

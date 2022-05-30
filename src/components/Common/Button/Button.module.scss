@@ -1,0 +1,24 @@
+@import '../../../scss/variables.scss';
+
+.basicBtn {
+    border-radius: 6px;
+    border-style: none;
+    font-size: 1em;
+    padding: 0.5em;
+    margin: 4px;
+    background: $btnBg; 
+    color: $btnText;   
+    padding: 0.5em;
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}
+
+.success {
+    background-color: $incBg;
+}
+
+.danger {
+    background-color: $expBg;
+}
