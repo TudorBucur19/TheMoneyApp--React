@@ -8,7 +8,6 @@
     margin: 4px;
     background: $btnBg; 
     color: $btnText;   
-    padding: 0.5em;
 
     &:disabled {
         opacity: 0.5;
@@ -21,4 +20,9 @@
 
 .danger {
     background-color: $expBg;
+}
+
+.round {
+    border-radius: 50%;
+    border: 4px solid white;
 }

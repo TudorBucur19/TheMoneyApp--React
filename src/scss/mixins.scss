@@ -5,3 +5,12 @@
     @content;
   }
 }
+
+
+// @mixin daySize($margin) {
+//   width: (100% - 2*$margin) / 7;
+// }
+
+// @mixin daySize($border) {
+//   width: calc(100% - (7*$border)) / 7;
+// }
