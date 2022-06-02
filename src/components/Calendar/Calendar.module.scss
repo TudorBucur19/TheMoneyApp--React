@@ -1,0 +1,86 @@
+@import '../../scss/mixins.scss';
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+
+    &_weekdayNames {
+        display: flex;
+        justify-content: space-between;
+        padding: 1em 0;
+        color: blueviolet;
+        font-weight: bold;
+        
+        &_dayName {
+            width: calc((100% - 14*$daySquareBorder) / 7);
+            border: $daySquareBorder solid white;
+        }
+    }
+
+    &_calendar {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    background: orange;
+    padding: 1em;
+
+    &_changeMonth {
+        display: flex;
+        align-items: center;
+
+        &_monthDisplay {
+            padding: 0 1em;
+            font-weight: bold;
+        }
+    }
+
+    
+}
+
+.daySquare {
+    //@include daySize(1px);
+    width: calc((100% - 14*$daySquareBorder) / 7);
+    aspect-ratio: 1;
+    background-color: violet;
+    border: $daySquareBorder solid white;
+
+    &:nth-child(7) {
+        border-right: none;
+    }
+
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5em;
+        background: yellow;
+
+        &_dayNo {
+            font-weight: bold;
+            font-size: 1.4em;
+            color: gray;
+        }
+
+        &_action {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+.paddingDay {
+    opacity: 0.5;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+

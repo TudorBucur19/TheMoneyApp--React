@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import OperationsContextProvider from './contexts/OperationsContext';
 import { Provider } from 'react-redux';
 import store from './redux/configureStore';
+import Calendar from './components/Calendar/Calendar';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <div className="tables">
             <Operations/>
           </div>
+          <Calendar/>
       </OperationsContextProvider>    
       </Provider>
     </div>
