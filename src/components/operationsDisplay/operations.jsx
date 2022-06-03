@@ -1,10 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { OperationsContext } from '../../contexts/OperationsContext';
 import OperationsTable from './OperationTable/OperationsTable';
 import { useDatabaseCalls } from '../../utils/customHooks/useDatabaseCalls';
 import { getCurrentDate } from '../../utils/helperFunctions';
 import { setOperationsLists } from '../../redux/ducks/operationsList';
+import Modal from '../Common/Modal/Modal';
+import OperationsForm from '../OperationsForm/OperationsForm';
+import { toggleModal } from '../../redux/ducks/modalStatus';
 import styles from './Operations.module.scss'
 
 
@@ -17,7 +21,8 @@ const Operations = () => {
     const dispatch = useDispatch();
     const expenses = operations.filter(el => el.type === "expense");
     const incomes = operations.filter(el => el.type === "income");
-
+    const { modalStatus } = useSelector(state => state);
+    
     useEffect(() => {
         dispatch(setOperationsLists({incomes, expenses}))
     }, [operations]);
@@ -43,6 +48,12 @@ const Operations = () => {
             currentDate={date}
             typeClassName={typeIncome}
             />
+
+            {modalStatus &&
+                <Modal onClose={() => dispatch(toggleModal())}>
+                    <OperationsForm/>
+                </Modal>
+            }
         </div>
     )
 };
