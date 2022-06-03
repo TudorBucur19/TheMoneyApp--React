@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../redux/ducks/modalStatus';
 import Button from '../Common/Button/Button';
 import styles from './Calendar.module.scss';
 
 const Day = ({ day, onClick }) => {
     const [isVisible, setIsVisible] = useState(false);
     const isPaddingDay = day.value === 'padding';
+    const dispatch = useDispatch();
     const { 
         daySquare, 
         daySquare_header, 
@@ -18,9 +21,10 @@ const Day = ({ day, onClick }) => {
 
     return ( 
         <div 
-        className={`${isPaddingDay && paddingDay} ${daySquare}`}
+        className={`${isPaddingDay ? paddingDay : ""} ${daySquare}`}
         onMouseEnter={() => setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
+        onClick={onClick}
         >
             {!isPaddingDay && 
             <>
@@ -37,6 +41,7 @@ const Day = ({ day, onClick }) => {
                     <Button
                     children="+"
                     style="round"
+                    onClick={() => dispatch(toggleModal())}
                     />
                 </span>
                 

@@ -46,7 +46,7 @@
     //@include daySize(1px);
     width: calc((100% - 14*$daySquareBorder) / 7);
     aspect-ratio: 1;
-    background-color: violet;
+    background-color: $daySquareBg;
     border: $daySquareBorder solid white;
 
     &:nth-child(7) {
@@ -73,7 +73,7 @@
 }
 
 .paddingDay {
-    opacity: 0.5;
+    background-color: rgba($daySquareBg, .5);
 }
 
 .hidden {

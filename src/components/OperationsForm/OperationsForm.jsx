@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { OperationsContext } from '../../contexts/OperationsContext';
 import { setOperationType } from '../../redux/ducks/operationType';
 import Button from '../Common/Button/Button';
-import styles from './OperationsInputs.module.scss';
+import styles from './OperationsForm.module.scss';
 
 const OperationsForm = () => {
     const { register, handleSubmit, reset, formState } = useForm();
