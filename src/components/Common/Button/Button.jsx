@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-const Button = ({ children, onClick, colorScheme = false, disabled, type, style }) => {
+const Button = ({ children, onClick, colorScheme = "", disabled, type, style }) => {
     const { basicBtn, success, danger, round } = styles;
 
     const btnColor = {
@@ -15,7 +15,12 @@ const Button = ({ children, onClick, colorScheme = false, disabled, type, style 
     }
     
     return ( 
-        <button className={`${basicBtn} ${btnColor[colorScheme]} ${btnStyle[style]}`} onClick={onClick} disabled={disabled} type={type}>
+        <button 
+        className={`${basicBtn} ${btnColor[colorScheme]} ${btnStyle[style]}`} 
+        onClick={onClick} 
+        disabled={disabled} 
+        type={type}
+        >
             {children}
         </button>
      );
