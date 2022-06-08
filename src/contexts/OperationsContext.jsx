@@ -2,14 +2,15 @@ import React, { createContext, useState, useEffect } from 'react';
 import firebase from '../utils/firebase';
 import { useSelector } from 'react-redux';
 import { getCurrentDate } from '../utils/helperFunctions';
+import useCalendar from '../utils/customHooks/useCalendar';
 
 export const OperationsContext = createContext();
 
 const OperationsContextProvider = (props) => {    
     const [operation, setOperation] = useState({});
     const { operationType } = useSelector(state => state);
-    const currentMonth = getCurrentDate();
-    
+    const currentMonth = getCurrentDate();   
+    const { clickedDay } = useSelector(state => state); 
 
     const editOperation = {
         description: "test", 
@@ -42,6 +43,7 @@ const OperationsContextProvider = (props) => {
         .collection(`${currentMonth}`)
         .add({
             ...data,
+            date: clickedDay,
             type: operationType
         })
     }

@@ -1,19 +1,25 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '../../redux/ducks/modalStatus';
 import Button from '../Common/Button/Button';
 import styles from './Calendar.module.scss';
+import DayOperationDisplay from './DayOperationDisplay';
 
 const Day = ({ day, onClick }) => {
     const [isVisible, setIsVisible] = useState(false);
     const isPaddingDay = day.value === 'padding';
     const dispatch = useDispatch();
+    const { operationsLists } = useSelector(state => state);
+
+    const dayExpenses = operationsLists.expenses.filter(expense => expense.date === day.date);
+    const dayIncomes = operationsLists.incomes.filter(income => income.date === day.date);
+    const dayOperations = [...dayExpenses, ...dayIncomes];
+
     const { 
         daySquare, 
         daySquare_header, 
         daySquare_header_dayNo, 
         daySquare_header_action, 
-        dayEvent, 
         paddingDay, 
         hidden, 
         visible,
@@ -37,17 +43,25 @@ const Day = ({ day, onClick }) => {
                         9800
                     </span>                        
                 </div>
-                <span className={`${isVisible && visible} ${hidden}`}>
+                <span className={`${isVisible ? visible : ""} ${hidden}`}>
                     <Button
                     children="+"
                     style="round"
                     onClick={() => dispatch(toggleModal())}
                     />
-                </span>
-                
+                </span>                
             </div>            
             </>
             }
+            {dayOperations.length && dayOperations.map(operation => (
+                <DayOperationDisplay
+                key={operation.id}
+                description={operation.description}
+                amount={operation.amount}
+                operationType={operation.type}
+                />
+            ))}
+
         </div> 
     );
 }

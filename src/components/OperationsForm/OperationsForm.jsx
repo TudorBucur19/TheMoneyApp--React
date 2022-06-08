@@ -89,13 +89,8 @@ const OperationsForm = () => {
                             <option key={category} value={category} >{category}</option>)
                         }
                     </select>
-                
-                <input 
-                type="date"
-                {...register('date', {required: true})}
-                />                                
                 <Button children={`Add ${operationType}`} type="submit" colorScheme={operationType === "expense" ? "danger" : "success"}/>
-            </form>                
+            </form>         
         </div>                      
     )
 };
