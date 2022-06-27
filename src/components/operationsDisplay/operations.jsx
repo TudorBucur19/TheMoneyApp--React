@@ -11,7 +11,6 @@ import OperationsForm from '../OperationsForm/OperationsForm';
 import { toggleModal } from '../../redux/ducks/modalStatus';
 import styles from './Operations.module.scss'
 
-
 //export const total = (list) => list.reduce((total, el) => total = total + Number(el.amount), 0);
 
 const Operations = () => {

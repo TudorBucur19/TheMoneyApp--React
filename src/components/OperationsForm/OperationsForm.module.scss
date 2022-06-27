@@ -4,32 +4,39 @@
 
 .formContainer {
     display: flex;
-    width: 100%;    
-    margin: 1% 3%;    
-    padding: 5px;
-}
-
-.operationsForm {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;    
-
-    @include mQ(1920px){
-        width: 100%;
-    }    
+    flex-direction: column;
+    width: 100%;  
     
-    input {
-        @extend %input-fields;      
+    &Actions {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.8em 0;
     }
-
-    select {
-        @extend %input-fields;
-    }
-
-    // button {
-    //     @extend %button;
-    // }
 }
+
+input {
+    @extend %input-fields;      
+}
+
+// .operationsForm {
+//     display: flex;
+//     justify-content: flex-start;
+//     flex-wrap: wrap;    
+
+//     @include mQ(1920px){
+//         width: 100%;
+//     }    
+    
+    
+
+//     select {
+//         @extend %input-fields;
+//     }
+
+//     // button {
+//     //     @extend %button;
+//     // }
+// }
 
  
 

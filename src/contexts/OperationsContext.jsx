@@ -1,16 +1,18 @@
 import React, { createContext, useState, useEffect } from 'react';
 import firebase from '../utils/firebase';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentDate } from '../utils/helperFunctions';
 import useCalendar from '../utils/customHooks/useCalendar';
+import { toggleModal } from '../redux/ducks/modalStatus';
 
 export const OperationsContext = createContext();
 
 const OperationsContextProvider = (props) => {    
     const [operation, setOperation] = useState({});
-    const { operationType } = useSelector(state => state);
+    const { operationType, clickedDay, operationCategory } = useSelector(state => state);
     const currentMonth = getCurrentDate();   
-    const { clickedDay } = useSelector(state => state); 
+    const dispatch = useDispatch();
+    
 
     const editOperation = {
         description: "test", 
@@ -38,15 +40,16 @@ const OperationsContextProvider = (props) => {
 
     // ADDING OPERATIONS TO DATABASE  
 
-    function onSubmit(data)  {
-        firebase.firestore()
+    const onSubmit = (data) => {
+       firebase.firestore()
         .collection(`${currentMonth}`)
         .add({
             ...data,
+            category: operationCategory.category,
+            type: operationCategory.type,
             date: clickedDay,
-            type: operationType
         })
-    }
+    };
 
     //REMOVE ITEMS FROM DATABASE
     const removeItem = (id) => {
