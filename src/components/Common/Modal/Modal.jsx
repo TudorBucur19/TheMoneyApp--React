@@ -16,17 +16,22 @@ const Modal = ({ children, onClose }) => {
 
     useOutsideClick(ref, handleModalStatus);
 
-    const { modalOverlay, modalBody } = styles;
+    const { modalOverlay, modalBody, modalBody_actions, modalBody_content } = styles;
 
     return ( 
         <div className={modalOverlay}>
             <div className={modalBody} ref={ref}>
-                {children}
+                <div className={modalBody_content}>
+                    {children}
+                </div>
+                {/* <div className={modalBody_actions}>
+                    <Button 
+                    children="Close"
+                    onClick={() => onClose()}
+                    />
+                </div>                 */}
             </div>
-            <Button 
-            children="Close"
-            onClick={() => onClose()}
-            />
+            
         </div>
      );
 }

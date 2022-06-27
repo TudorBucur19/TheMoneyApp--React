@@ -1,0 +1,46 @@
+
+.iconContainer {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+    
+
+    &_icon {
+        border-radius: 50%;
+        padding: 4px;
+        color: white;
+        width: fit-content;
+        cursor: pointer;
+    }
+
+    &_name {
+        font-size: 10px;
+        text-transform: capitalize;
+    }
+}
+
+.yellow {
+    background-color: #fac532;
+}
+
+.green {
+    background-color: #03b500;
+}
+
+.red {
+    background-color: #d11e02;
+}
+
+.pink {
+    background-color: #fc03c6;
+}
+
+.lightPink {
+    background-color: #fc58d9;
+}
+
+.lightBlue {
+    background-color: #0298e3;
+}
